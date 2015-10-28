@@ -1,0 +1,2 @@
+objetmultimedia.o: objetmultimedia.cpp objetmultimedia.h
+main.o: main.cpp objetmultimedia.h photo.h video.h
