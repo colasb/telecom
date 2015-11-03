@@ -33,9 +33,17 @@ int main(void){
     Photo * pho =new Photo("hiver", "hiver.jpg", 12.0, 14.0);
     pho->play();
     usleep(5000000);
-    pho->affichage(cout);
-
-    Film film = new Film();
+    pho->affichage(cout);   
+    int tab[5]= {1,1,85,65,4};
+    int a =5;
+    int b =156;
+    string c="super";
+    string d= "path";
+    Film * film = new Film(tab,a,c,d,b);
+    film->affichage(cout);
     return 0;
 
 }
+
+
+

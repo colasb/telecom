@@ -17,7 +17,7 @@ public:
     virtual int * getTabChap();
     virtual int getNbChaptre();
     virtual void affichage(ostream& ostream) const;
-    virtual ~Film();
+    virtual ~Film(){delete tabDuree;}
 };
 
 #endif // FILM_H

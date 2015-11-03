@@ -9,13 +9,14 @@ Film::Film(): Video() {
     nbChapitre = 0;
 }
 
-Film::Film(): Video() {
-    this->nbChapitre = nbChapitre;
-    tabDuree = new int[this->nbChapitre];
+Film::Film(int* tab, int nbChap, string nomVideo, string pathnameVideo, int dureeVideo): Video() {
+    nbChapitre = nbChap;
+    tabDuree = new int[nbChapitre];
+    for(int i=0; i < this->nbChapitre; i++){tabDuree[i]= tab[i];}
 }
 
 int * Film::getTabChap(){
-    return * tabDuree;
+    return tabDuree;
 }
 
 int Film::getNbChaptre(){
@@ -23,13 +24,14 @@ int Film::getNbChaptre(){
 }
 
 void Film::setTabDuree(int *tab, int nbChapitre){
-    this->tabDuree = tab;
+    tabDuree = new int[nbChapitre];
     this->nbChapitre = nbChapitre;
+    for(int i=0; i < this->nbChapitre; i++){tabDuree[i]= tab[i];}
 }
 
 void Film::affichage(ostream& ostream) const{
-    ostream<<"Le film comporte "<<getNbChaptre()<<"."<<endl;
-    for(int i=0;i<getNbChaptre();i++){
-        ostream<<"Le chapitre "<<i+1<<" dure "<<getDuree()[i]<<" secondes."<<endl;
+    ostream<<"Le film comporte "<<nbChapitre<<"."<<endl;
+    for(int i=0;i<nbChapitre;i++){
+        ostream<<"Le chapitre "<<i+1<<" dure "<<tabDuree[i]<<" secondes."<<endl;
     }
 }
