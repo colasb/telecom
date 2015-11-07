@@ -5,3 +5,5 @@ photo.h
 video.h
 film.h
 film.cpp
+groupe.h
+manageObject.h

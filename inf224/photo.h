@@ -24,7 +24,7 @@ public:
                                                     ostream<<"la latitude est "<<latitude<<endl;
                                                     ostream<<"la longitude est "<<longitude<<endl;}
     virtual void play() const{system(("imagej " + getPathname() + "&").c_str()); }
-    virtual ~Photo(){}
+    virtual ~Photo(){cout<<"The picture "<<this->getName()<<" was delete"<<endl;}
 };
 
 #endif // PHOTO_H

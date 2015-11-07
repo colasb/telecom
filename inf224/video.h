@@ -19,7 +19,7 @@ public:
                                                    ostream<<"le chemin d'acces' de la video est "<<getPathname()<<endl;
                                                    ostream<<"la duree de la video est de "<<duree<<" secondes"<<endl;}
     virtual void play() const{system(("mpv " + getPathname() + "&").c_str()); }
-    virtual ~Video(){}
+    virtual ~Video(){cout<<"The video "<<this->getName()<<" was delete"<<endl;}
 };
 
 #endif // VIDEO_H

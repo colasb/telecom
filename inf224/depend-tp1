@@ -1,3 +1,4 @@
 objetmultimedia.o: objetmultimedia.cpp objetmultimedia.h
-main.o: main.cpp objetmultimedia.h photo.h video.h film.h
+main.o: main.cpp objetmultimedia.h photo.h video.h film.h groupe.h \
+ manageObject.h
 film.o: film.cpp film.h video.h objetmultimedia.h
