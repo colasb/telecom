@@ -7,3 +7,10 @@ film.h
 film.cpp
 groupe.h
 manageObject.h
+client.cpp
+TCPServer.h
+Socket.h
+TCPServer.cpp
+Socket.cpp
+server.cpp
+server.h

@@ -14,7 +14,7 @@ PROG = tp1
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = objetmultimedia.cpp main.cpp film.cpp
+SOURCES = objetmultimedia.cpp main.cpp film.cpp Socket.cpp TCPServer.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -43,7 +43,7 @@ LDFLAGS =
 # Librairies a utiliser
 # Example: LDLIBS = -L/usr/local/qt/lib -lqt
 #
-LDLIBS = 
+LDLIBS = -Ipthread
 
 
 ##########################################

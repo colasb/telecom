@@ -9,6 +9,7 @@
 #include"groupe.h"
 #include <memory>
 #include"manageObject.h"
+#include "TCPServer.h"
 
 typedef Groupe<shared_ptr<ObjetMultimedia>> T;
 

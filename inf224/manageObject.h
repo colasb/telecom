@@ -6,8 +6,8 @@
 #include "film.h"
 #include "photo.h"
 #include "objetmultimedia.h"
-#include<map>
-#include<memory>
+#include <map>
+#include <memory>
 
 using namespace std;
 typedef map<string, shared_ptr<Groupe<shared_ptr<ObjetMultimedia>>>> Groupes;
@@ -22,8 +22,8 @@ public :
      ManageObject(){}
 
     virtual shared_ptr<Photo> addPhoto(string name,string path, float latitude, float longitude) {shared_ptr<Photo> obj(new Photo(name,path, latitude, longitude)); multimedias[name] = obj; return obj;}
-    virtual shared_ptr<Video>  addVideo(string name,string path, int dureeVideo) {shared_ptr<Video> obj(new Video(name, path, dureeVideo)); multimedias[name] = obj; return obj;}
-    virtual shared_ptr<Film>  addFilm(int* tab, int nbChap, string nomVideo, string pathnameVideo, int dureeVideo) {shared_ptr<Film> obj(new Film(tab, nbChap, nomVideo, pathnameVideo, dureeVideo)); multimedias[nomVideo] = obj; return obj;}
+    virtual shared_ptr<Video> addVideo(string name,string path, int dureeVideo) {shared_ptr<Video> obj(new Video(name, path, dureeVideo)); multimedias[name] = obj; return obj;}
+    virtual shared_ptr<Film> addFilm(int* tab, int nbChap, string nomVideo, string pathnameVideo, int dureeVideo) {shared_ptr<Film> obj(new Film(tab, nbChap, nomVideo, pathnameVideo, dureeVideo)); multimedias[nomVideo] = obj; return obj;}
     virtual shared_ptr<Groupe<shared_ptr<ObjetMultimedia>>> addGroupe(string name)
      {shared_ptr<Groupe<shared_ptr<ObjetMultimedia>>> groupe(new Groupe<shared_ptr<ObjetMultimedia>>(name));
       groupes[name] = groupe; return groupe;}
@@ -39,31 +39,30 @@ public :
         multimedias.erase(name);
     }
 
-    virtual void searchObject(string name, ostream & cout){
-        shared_ptr<ObjetMultimedia> obj = (*(multimedias.find(name))).second;
-        if(obj) obj->affichage(cout);
-        else cout<<"This objet doesn't exist"<<endl;
+    void searchObject(string name, ostream & cout){
+        auto obj = multimedias.find(name);
+        if(multimedias.find(name) == multimedias.end()){cout<<"This objet doesn't exist"<<endl;}
+        else (*obj).second->play();
 
     }
 
-    virtual void searchGroup(string name, ostream & cout){
-        shared_ptr<Groupe<shared_ptr<ObjetMultimedia>>> groupe = (*(groupes.find(name))).second;
-        if(groupe) {cout<<"6"<<endl;groupe->affichage(cout);}
-        else {cout<<"This group doesn't exist"<<endl;}
+    void searchGroup(string name, ostream & cout){
+        auto groupe = groupes.find(name);
+        if(groupes.find(name) == groupes.end()){cout<<"This group doesn't exist"<<endl;}
+        else {(*groupe).second->play();}
     }
 
-    virtual void playObject(string name){
-        shared_ptr<ObjetMultimedia>  obj= (*(multimedias.find(name))).second;
-        if(obj) obj->play();
-        else cout<<"This objet doesn't exist"<<endl;
-
+    void playObject(string name){
+        auto  obj= multimedias.find(name);
+        if(multimedias.find(name) == multimedias.end()){cout<<"This objet doesn't exist"<<endl;}
+        else (*obj).second->play();
     }
 
-    virtual void playGroup(string name){
-        shared_ptr<Groupe<shared_ptr<ObjetMultimedia>>> groupe = (*(groupes.find(name))).second;
-        if(groupe) groupe->play();
-        else {cout<<"This group doesn't exist"<<endl;}
-       }
+    void playGroup(string name){
+        auto groupe = groupes.find(name);
+        if(groupes.find(name) == groupes.end()) {cout<<"This group doesn't exist"<<endl;}
+        else {(*groupe).second->play(); }
+    }
 
 };
 

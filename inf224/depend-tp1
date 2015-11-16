@@ -1,4 +1,6 @@
 objetmultimedia.o: objetmultimedia.cpp objetmultimedia.h
 main.o: main.cpp objetmultimedia.h photo.h video.h film.h groupe.h \
- manageObject.h
+ manageObject.h TCPServer.h Socket.h
 film.o: film.cpp film.h video.h objetmultimedia.h
+Socket.o: Socket.cpp Socket.h
+TCPServer.o: TCPServer.cpp TCPServer.h Socket.h
