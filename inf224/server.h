@@ -6,19 +6,17 @@
 #include "objetmultimedia.h"
 #include "manageObject.h"
 #include "TCPServer.h"
-
+#include <sstream>
 
 using namespace std;
 
-class MyApp :
-{
+class MyApp {
 private:
     ManageObject *obj;
 public:
-    void MyApp(ManageObject _obj){ManageObject *obj = _obj;}
+    MyApp(ManageObject* obj);
     virtual bool processRequest(TCPServer::Cnx& cnx, const string& request, string& response);
-
-
+    virtual void processCommand(const string& request, string& name, string& response);
 };
 
 #endif // SERVER_H

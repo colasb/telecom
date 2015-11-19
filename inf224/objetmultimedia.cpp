@@ -1,4 +1,4 @@
-#include "objetmultimedia.h"
+﻿#include "objetmultimedia.h"
 #include <iostream>
 #include<string>
 
@@ -33,6 +33,11 @@ void ObjetMultimedia::affichage(ostream& ostream) const{
     ostream <<"le nom de l'objet est "<<name<<endl;
     ostream<<"le chemin d'acces' de l'objet est "<<pathname<<endl;
 }
+
+string ObjetMultimedia::getAttribut(){
+    return "Name: "+ name + ", Path Access: " + pathname;
+}
+
 ObjetMultimedia::~ObjetMultimedia(){
 
 }

@@ -17,6 +17,7 @@ public:
     virtual int * getTabChap();
     virtual int getNbChaptre();
     virtual void affichage(ostream& ostream) const;
+    virtual string getAttribut();
     virtual ~Film(){delete [] tabDuree;cout<<"The film "<<this->getName()<<" was delete"<<endl;}
 };
 

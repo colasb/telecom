@@ -1,7 +1,7 @@
 #ifndef PHOTO_H
 #define PHOTO_H
 #include <iostream>
-#include<string>
+#include <string>
 #include "objetmultimedia.h"
 
 using namespace std;
@@ -24,6 +24,13 @@ public:
                                                     ostream<<"la latitude est "<<latitude<<endl;
                                                     ostream<<"la longitude est "<<longitude<<endl;}
     virtual void play() const{system(("imagej " + getPathname() + "&").c_str()); }
+    virtual string getAttribut() {
+            return "le nom de la photo est "+ getName() +
+            ", le chemin d'acces' a la photo est " + getPathname() +
+            ", la latitude est " + to_string(latitude) +
+            ", la longitude est " + to_string(longitude) + ".";
+}
+
     virtual ~Photo(){cout<<"The picture "<<this->getName()<<" was delete"<<endl;}
 };
 

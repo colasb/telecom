@@ -12,13 +12,14 @@ private :
 public :
     Groupe(string name) : list<T>() { this->name = name;}
     string getName() const {return name;}
+
     void affichage(ostream & cout) const {
-    for(auto it = this->begin(); it != this->end(); it++){ (*it) ->affichage(cout); cout <<"\n"<<endl;}
+        for(auto it = this->begin(); it != this->end(); it++){ (*it) ->affichage(cout); cout <<"\n"<<endl;}
     }
 
     void play() const {
-    for(auto it = this->begin(); it != this->end(); it++){ (*it) ->play(); cout <<"\n"<<endl;}
-    }
+        for(auto it = this->begin(); it != this->end(); it++){ (*it) ->play(); cout <<"\n"<<endl;}
+    }   
     virtual ~Groupe(){cout<<"The group "<<this->name<<" was delete"<<endl;}
 };
 

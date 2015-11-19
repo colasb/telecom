@@ -20,6 +20,7 @@ public:
     virtual void setPathname(string pathnameOject);
     virtual void affichage(ostream& ostream) const;
     virtual void play() const =0;
+    virtual string getAttribut();
     virtual ~ObjetMultimedia();
 
 };

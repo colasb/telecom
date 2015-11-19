@@ -1,21 +1,16 @@
-//
+﻿//
 //  server.cpp
 //  TP C++
 //  Eric Lecolinet - Telecom ParisTech - 2015.
 //
 
-#include <iostream>
-#include <string>
-#include "TCPServer.h"
 #include "server.h"
-#include "manageObject.h"
-using namespace std;
 
 const int DEFAULT_PORT = 3331;
-
-class MyApp {
-public:
   
+MyApp::MyApp(ManageObject* obj){
+    this-> obj = obj;
+}
   /// Cette fonction est appelée chaque fois qu'il y a une requête à traiter.
   /// - 'request' contient la requête
   /// - 'response' sert à indiquer la réponse qui sera renvoyée au client
@@ -26,9 +21,15 @@ public:
   // Si le verrou 'lock' est bloqué en mode WRITE, les autres appels sont bloqués
   // jusqu'à la fin l'appel qui a bloqué le verrou.
   //
-  bool processRequest(TCPServer::Cnx& cnx, const string& request, string& response)
+  bool MyApp::processRequest(TCPServer::Cnx& cnx, const string& request, string& response)
   {
     // utiliser un getline avec trois variables transformer en string
+    stringstream _requete(request);
+    string requete;
+    string name;
+    getline(_requete, requete,'|');
+    getline(_requete, name);
+
 
     // mettre cette variable à true si la commande modifie les donnees du programme
     bool changeData = false;
@@ -39,27 +40,36 @@ public:
     
     cerr << "request: '" << request << "'" << endl;
     
+    processCommand(requete,name,response);
+
     // simule un traitement long (décommenter pour tester le verrou)
     // if (changeData) sleep(10); else sleep(5);
     
-    response = "OK: " + request;
+    //response = "OK: " + request;
     cerr << "response: '" << response << "'" << endl;
     
     // renvoyer false pour clore la connexion avec le client
     return true;
   }
 
-  void processCommand(const string& request, string& name, string& response ){
-      if (request == "search object")
+  void MyApp::processCommand(const string& request, string& name, string& response ){
+      if (request == "search object"){
           obj->searchObject(name,cout);
-      elif(request == "search group")
-          obj->searchGroup(name, cout);
-      elif
-
-
-
+          response = "The command was executed with success";}
+      else if(request == "delete object"){
+          obj->deleteMultimedia(name);}
+      else if(request == "delete group"){
+          obj->deleteGroupe(name);
+          response = "The command was executed with success";}
+      else if(request =="play"){
+          obj->playObject(name);
+          response = "The command was executed with success";}
+      else if (request =="print object"){
+          response = obj->getAttributObject(name);}
+      else
+          response = "The command: " + request + " was not found";
   }
-};
+
 
 /*
 int main(int argc, char* argv[])
@@ -77,6 +87,6 @@ int main(int argc, char* argv[])
     return 1;
   }
   else return 0;
-}
+}*/
 
-*/
+

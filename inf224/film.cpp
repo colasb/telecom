@@ -35,3 +35,11 @@ void Film::affichage(ostream& ostream) const{
         ostream<<"Le chapitre "<<i+1<<" dure "<<tabDuree[i]<<" secondes."<<endl;
     }
 }
+
+string Film::getAttribut(){
+    string s ="Le film comporte "+ to_string(nbChapitre) + ".";
+    for(int i=0;i<nbChapitre;i++){
+        s =+ " Le chapitre "+ to_string(i+1) + " dure "+ to_string(tabDuree[i]) +" secondes.";
+    }
+    return s;
+}

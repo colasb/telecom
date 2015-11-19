@@ -10,13 +10,14 @@
 #include <memory>
 #include"manageObject.h"
 #include "TCPServer.h"
+#include "server.h"
 
 typedef Groupe<shared_ptr<ObjetMultimedia>> T;
 
 using namespace std;
 
 int 
-main(void){
+main(int argc, char* argv[]){
     /*list<ObjetMultimedia*> listObjet;
     listObjet.push_back(new Photo("hiver", "hiver.jpeg", 12.0, 14.0));
     listObjet.push_back(new Photo("hiver", "hivr.jpeg", 13.0, 16.0));
@@ -68,9 +69,9 @@ main(void){
     groupFilm->push_back(shared_ptr<ObjetMultimedia>(new Video("ta7", "vid.mp4", 571)));
     groupFilm->push_back(shared_ptr<ObjetMultimedia>(new Video("t4", "vdeo.mp4", 57)));
     groupFilm->push_back(shared_ptr<ObjetMultimedia>(new Video("t9ab4", "vo.mp4", 75)));
-    groupPhoto->push_back(film1);
     groupPhoto->push_back(film2);
 
+    groupPhoto->push_back(film1);
     mixte->push_back(clicher1);
     mixte->push_back(clicher2);
     mixte->push_back(film1);
@@ -109,9 +110,20 @@ main(void){
     mo->searchObject("hiver", cout);
     mo->playObject("t9ab4");
     mo->deleteGroupe("Groupe Photal");
-    return 0;
+
+
+    TCPServer * server = new TCPServer();
+    MyApp * app = new MyApp(mo);
+    server->setCallback(app, &MyApp::processRequest);
+
+    int port = (argc >= 2) ? atoi(argv[1]) : 3331;
+    cout << "Starting Server on port " << port << endl;
+    int status = server->run(3331);
+
+    if (status < 0) {
+      cerr << "Could not start Server on port " << port << endl;
+      return 1;
+    }
+    else return 0;
 
 }
-
-
-
