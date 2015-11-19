@@ -54,8 +54,8 @@ MyApp::MyApp(ManageObject* obj){
 
   void MyApp::processCommand(const string& request, string& name, string& response ){
       if (request == "search object"){
-          obj->searchObject(name,cout);
-          response = "The command was executed with success";}
+          response = obj->searchObject(name,cout);}
+          //response = "The command was executed with success";}
       else if(request == "delete object"){
           obj->deleteMultimedia(name);}
       else if(request == "delete group"){

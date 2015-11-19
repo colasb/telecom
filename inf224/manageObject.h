@@ -45,10 +45,10 @@ public :
         multimedias.erase(name);
     }
 
-    virtual void searchObject(string name, ostream & cout){
+    virtual string searchObject(string name, ostream & cout){
         auto obj = multimedias.find(name);
-        if(multimedias.find(name) == multimedias.end()){cout<<"This objet doesn't exist"<<endl;}
-        else (*obj).second->getAttribut();
+        if(multimedias.find(name) == multimedias.end()){return "This objet doesn't exist";}
+        else return (*obj).second->getAttribut();
 
     }
 
